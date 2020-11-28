@@ -53,12 +53,12 @@
     <?php include $base."footer.php"; ?>
 </div>
 <script type="text/javascript">
-    initInfo("TEST", "TEST GROUP", "TEST DESCRIPTION");
+    initInfo("Guess What It Is", "Winner Team", "DESCRIPTION");
     newTextBox("testbox",'textBoxDemo');
     var choices = ['PvP','PvAI','AIvP'];
     newButtonGroup('mode',choices,'btnDemo');
     newSelect('anotherMode',choices,'selectDemo');
-    newWindowBtn(800,800,"games/empty/iframe.html", ['textBoxDemo', 'btnDemo', 'selectDemo']);
+    newWindowBtn(800,800,"games/GuessWhatItIs/iframe.html", ['textBoxDemo', 'btnDemo', 'selectDemo']);
 </script>
 </body>
 </html>
