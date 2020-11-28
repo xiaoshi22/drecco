@@ -1,0 +1,2 @@
+zip -r GuessWhatItIs.zip GuessWhatItIs
+python3 p3_add_game.py -gn GuessWhatItIs -gp GuessWhatItIs
