@@ -4,9 +4,9 @@ $host = "warehouse.cims.nyu.edu"; // Host name
 //$username = "by653"; // Mysql username
 //$password = "adba2"; // Mysql password
 //$db_name = "by653_adba2"; // Database name
-$username = "mfo254";
-$password = "db_pswd";
-$db_name = "mfo254_drecco";
+$username = "xw2138";
+$password = "wp782sdp";
+$db_name = "xw2138_drecco";
 
 
 //DO NOT CHANGE BELOW THIS LINE UNLESS YOU CHANGE THE NAMES OF THE MEMBERS AND LOGINATTEMPTS TABLES
