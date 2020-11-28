@@ -2,7 +2,6 @@
 <html>
 <head>
     <?php $base = "../../" ?>
-<!--    <base href="http://cims.nyu.edu/~by653/hps/">-->
     <base href="../../">
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/facebox.js"></script>
@@ -48,17 +47,17 @@
         <h3>Settings</h3>
         <form id="gameSettings" class="well">
         </form>
-        <iframe src="games/empty/iframe.html" class="game" width="800" height="800"></iframe>
+        <iframe src="games/GuessWhatItIs/iframe.html" class="game" width="800" height="800"></iframe>
     </article>
     <?php include $base."footer.php"; ?>
 </div>
 <script type="text/javascript">
-    initInfo("TEST", "TEST GROUP", "TEST DESCRIPTION");
+    initInfo("Guess What It Is", "Winner Team", "DESCRIPTION");
     newTextBox("testbox",'textBoxDemo');
     var choices = ['PvP','PvAI','AIvP'];
     newButtonGroup('mode',choices,'btnDemo');
     newSelect('anotherMode',choices,'selectDemo');
-    newWindowBtn(800,800,"games/empty/iframe.html", ['textBoxDemo', 'btnDemo', 'selectDemo']);
+    newWindowBtn(800,800,"games/GuessWhatItIs/iframe.html", ['textBoxDemo', 'btnDemo', 'selectDemo']);
 </script>
 </body>
 </html>
