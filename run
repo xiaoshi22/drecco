@@ -1,0 +1,2 @@
+zip -r games/GuessWhatItIs.zip games/GuessWhatItIs
+python3 games/p3_add_game.py -gn games/GuessWhatItIs -gp games/GuessWhatItIs
