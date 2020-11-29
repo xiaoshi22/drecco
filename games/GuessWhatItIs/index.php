@@ -26,7 +26,7 @@
     </nav>
     <article>
         <h1 id="gameName">Guess What It Is</h1>
-        <h3 id="groupName">Winner Team</h3>
+        <h3 id="groupName">Team Winner</h3>
         <h3>Instruction:</h3>
         <div id="gameDesc" class="jumbotron">
             <strong>Overview:</strong> <br/>
@@ -78,8 +78,7 @@
 	    *       if smaller score is better. Otherwise no need to pass variable
 	    *       
 	    */
-	    // TODO: uncomment this in real use
-	    // getScore($gameName, $orderFlag);
+	    getScore("GuessWhatItIs", 0);
 	?>
 	</div>
         <h3>Settings</h3>
@@ -91,7 +90,7 @@
     <?php include $base."footer.php"; ?>
 </div>
 <script type="text/javascript">
-    newWindowBtn(800,800,"games/GuessWhatItIs/iframe.html", ['textBoxDemo', 'btnDemo', 'selectDemo']);
+    newWindowBtn(800,800,"games/GuessWhatItIs/iframe.html", []);
 </script>
 </body>
 </html>
