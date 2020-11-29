@@ -21,6 +21,8 @@ var numCards;
 var message = '';
 var player1 = '';
 var player2 = '';
+var qrcode1;
+var qrcode2;
 var numberTextSize = 24;
 
 function draw() {
@@ -72,6 +74,9 @@ function startGame() {
         numOfCards: numCards
     });
 
+    qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
+    qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
+
     done = false;
     turn = 0;
 
@@ -91,10 +96,8 @@ function drawPlayers() {
 }
 
 function drawQRCodes() {
-    img1 = loadImage('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
-    image(img1, width/4, 100);
-    img2 = loadImage('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
-    image(img2, width - (width/3), 100);
+    image(qrcode1, width/4, 100);
+    image(qrcode2, width - (width/3), 100);
 }
 
 function mouseClicked() {
