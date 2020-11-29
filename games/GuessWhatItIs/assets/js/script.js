@@ -75,8 +75,10 @@ function startGame() {
     });
 
     qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
+    qrcode1.hide();
     qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
-
+    qrcode2.hide();
+    
     done = false;
     turn = 0;
 
