@@ -28,6 +28,7 @@ function draw() {
     fill(255);
     if(inGame) {
         drawPlayers();
+        drawQRCodes();
         // strokeWeight(0);
         // drawMessage();
         // drawPlayers();
@@ -89,6 +90,13 @@ function drawPlayers() {
     text(player2, width -(width/3), 60);
 }
 
+function drawQRCodes() {
+    img1 = loadImage('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
+    image(img1, width/4, 100);
+    img2 = loadImage('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
+    image(img2, width - (width/3), 100);
+}
+
 function mouseClicked() {
 }
 
@@ -98,7 +106,6 @@ function nextTurn() {
 	game.gameOver = false;
 	done = true;
     }
-
 }
 
 function drawMessage() {
