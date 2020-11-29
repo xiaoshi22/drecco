@@ -75,6 +75,20 @@ function startGame() {
     boardSize = 30;
     boardWeight = 3;
 
+    if(!player1 || 0 === player1.length) {
+        document.getElementById('error-message').innerText = "Please enter the name of play 1.";
+        document.getElementById('error-container').style.display = 'block';
+        inGame = false;
+        return;
+    }
+
+    if(!player2 || 0 === player2.length) {
+        document.getElementById('error-message').innerText = "Please enter the name of play 2.";
+        document.getElementById('error-container').style.display = 'block';
+        inGame = false;
+        return;
+    }
+
     if(numCards % 2 == 0) {
             document.getElementById('error-message').innerText = "The number of cards must be odd.";
             document.getElementById('error-container').style.display = 'block';
