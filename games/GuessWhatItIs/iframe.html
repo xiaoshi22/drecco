@@ -7,13 +7,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
-        <!-- <script src="./script.js"></script> -->
+        <script src="assets/js/script.js"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="assets/css/game.css"/>
     </head>
     <body>
         <div class="container-fluid"> 
-            <h1 class="page-header game-title"> No Tipping Game </h1> 
+            <h1 class="page-header game-title"> Guess What It Is Game </h1> 
 
             <div class="information-container col-sm-3">
                 <div class="information col-sm-10">
@@ -29,18 +29,8 @@
                     </div>
 
                      <div class="info-form">
-                        <label for="size-of-board"> Size of Board (m) </label>
-                        <input type="text" class="form-control info-input" id="size-of-board" value="30">
-                    </div>
-
-                     <div class="info-form">
-                        <label for="weight-of-board"> Weight of Board (kg) </label>
-                        <input type="text" class="form-control info-input" id="weight-of-board" value="3">
-                    </div>
-
-                     <div class="info-form">
-                        <label for="number-of-weights"> Number of Weights </label>
-                        <input type="text" class="form-control info-input" id="number-of-weights" value="10">
+                        <label for="number-of-cards"> Number of Cards (must be odd) </label>
+                        <input type="text" class="form-control info-input" id="number-of-cards" value="30">
                     </div>
 
                      <div class="col-sm-12 alert alert-danger alert-dismissable" id="error-container">
@@ -60,40 +50,11 @@
         </div>
     </body>
 
-    <!-- <script>
+    <script>
         $('.close').on('click', function() {
             $(this).parent().hide();
             console.log('worked');
         });
 
-    </script> -->
+    </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!doctype html>
-<html>
-<head>
-    <title>Guess What It Is</title>
-</head>
-<body class="vsc-initialized">
-<h1>Guess What It Is</h1>
-
-<p>&nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="1" name="askcardTextField1" size="10" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="1" name="askcardTextField2" size="10" type="text" /></p>
-
-<p><input name="Player1 ask for card" type="button" value="Player1 ask for card" />&nbsp;<input name="Ask for card" type="button" value="Player2 ask for card" /></p>
-
-<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="1" name="Player1GuessTF" size="10" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="1" name="Player2GuessTF" size="10" type="text" /></p>
-
-<p><input name="Player1GuessBT" type="button" value="Player1 make a guess" />&nbsp;&nbsp;<input name="Player2GuessBT" type="button" value="Player2 make a guess" /></p>
-</body>
-</html> -->
