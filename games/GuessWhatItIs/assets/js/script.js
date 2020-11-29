@@ -75,14 +75,14 @@ function startGame() {
     boardSize = 30;
     boardWeight = 3;
 
-    if(!player1 || 0 === player1.length) {
+    if(player1 == "") {
         document.getElementById('error-message').innerText = "Please enter the name of play 1.";
         document.getElementById('error-container').style.display = 'block';
         inGame = false;
         return;
     }
 
-    if(!player2 || 0 === player2.length) {
+    if(player2 == "") {
         document.getElementById('error-message').innerText = "Please enter the name of play 2.";
         document.getElementById('error-container').style.display = 'block';
         inGame = false;
