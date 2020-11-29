@@ -78,7 +78,7 @@ function startGame() {
     qrcode1.hide();
     qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
     qrcode2.hide();
-    
+
     done = false;
     turn = 0;
 
@@ -98,6 +98,8 @@ function drawPlayers() {
 }
 
 function drawQRCodes() {
+    qrcode1.hide();
+    qrcode2.hide();
     image(qrcode1, width/4, 100);
     image(qrcode2, width - (width/3), 100);
 }
