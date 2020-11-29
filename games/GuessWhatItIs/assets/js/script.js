@@ -27,19 +27,20 @@ function draw() {
     background(220);
     fill(255);
     if(inGame) {
-        strokeWeight(0);
-        drawMessage();
         drawPlayers();
-        drawUnusedWeights();
-        drawTorque();
-        if(!tipping) {
-            strokeWeight(0);
-            drawTable();
-            drawTiles();
-            strokeWeight(1);
-        } else{
-            tipBoard();
-        }
+        // strokeWeight(0);
+        // drawMessage();
+        // drawPlayers();
+        // drawUnusedWeights();
+        // drawTorque();
+        // if(!tipping) {
+        //     strokeWeight(0);
+        //     drawTable();
+        //     drawTiles();
+        //     strokeWeight(1);
+        // } else{
+        //     tipBoard();
+        // }
     }
 }
 
@@ -72,11 +73,6 @@ function startGame() {
 
     done = false;
     turn = 0;
-
-    for(var i = 0; i < boardSize; i++) {
-        boardState.push(0);
-        boardColor.push(0);
-    }
 
     inGame = true;
 }
