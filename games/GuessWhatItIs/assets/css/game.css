@@ -22,6 +22,12 @@ body {
 	display: none;
 }
 
+.game {
+	height: 600px;
+	background: rgba(0,0,0, .1);
+	border-radius: 10px;
+}
+
 .game-title {
 	text-align: center;
 }
@@ -37,9 +43,11 @@ button.start-game {
 	border: 1px solid rgba(0,0,0,.3);
 }
 
-button.submit-move {
-	position: relative;
-	z-index: 999;
+button.next {
+	float: right;
+	margin: 5% 0;
+	border-radius: 10px;
+	border: 1px solid rgba(0,0,0,.3);
 }
 
 .btn-container {
