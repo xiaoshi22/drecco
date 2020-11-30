@@ -1,5 +1,12 @@
 $(function () {
-    var game_stage = 0;
+    const phase = {
+        QR_CODE: "qr_code_phase",
+        ASK: "ask_phase",
+        ANSWER: "answer_phase",
+        GAME_OVER:"game_over_phase"
+    }
+
+    var game_stage = phase.QR_CODE;
     // stage 0 -> qr code
     // 1 -> ask
     // 2 -> answer yes/no
@@ -21,28 +28,16 @@ $(function () {
         }
     }
     $('#start-game-btn').click(function () {
+        earse_error();
         console.log('start game btn clicked');
         turn = 0;
-        game_stage = 0;
+        game_stage = phase.QR_CODE;
         
         var name1 = $("#player-1").val();
         var name2 = $("#player-2").val();
         num_of_cards = $("#number-of-cards").val();
 
-        if(name1 == "") {
-            update_error("Please enter the name of player 1.");
-            return; 
-        }
-
-        if(name2 == "") {
-            update_error("Please enter the name of player 2.");
-            return; 
-        }
-
-        if(num_of_cards % 2 == 0) {
-            update_error("The number of cards must be odd.");
-            return;
-        }
+        if (!is_valid_game_info(name1, name2, num_of_cards)) return;
  
         var cards1 = new Array();
         var cards2 = new Array();
@@ -61,82 +56,36 @@ $(function () {
         draw_QR_code_phase();
     });
 
-    // $('#yes').click(function(){
-    //     if($(this).is(":checked")){
-    //         console.log("yes Checkbox is checked.");
-    //     }
-    //     else if($(this).is(":not(:checked)")){
-    //         console.log("yes Checkbox is unchecked.");
-    //     }
-    // });
-
-    // $('#no').click(function(){
-    //     if($(this).is(":checked")){
-    //         console.log("no Checkbox is checked.");
-    //     }
-    //     else if($(this).is(":not(:checked)")){
-    //         console.log("no Checkbox is unchecked.");
-    //     }
-    // });
-
     $('#next-btn').click(function () {
         next_phase();
     });
 
     function next_phase() {
+        earse_error();
         console.log('next btn clicked ' + game_stage);
 
-        if (game_stage == 0 || game_stage == 2) {
-            if (game_stage == 2) {
-                var should_be_yes = players[turn^1].cards.includes(asked_number);
-                if (($('#yes').is(":checked") && !should_be_yes) 
-                 || ($('#no').is(":checked") && should_be_yes)){
-                    update_error("You should answer the question honestly.");
-                    return;
-                }
+        if (game_stage == phase.QR_CODE || game_stage == phase.ANSWER) {
+            if (game_stage == phase.ANSWER) {
+                if (!is_a_valid_answer()) return;
                 turn ^= 1;
             }
-
             draw_ask_phase();
-            game_stage = 1;
-        } else if (game_stage == 1) {
-            var asked_num = $("#asked_number").val();
-            var guessed_num = $("#guessed_number").val();
-    
-            if(asked_num != "" && guessed_num != "") {
-                update_error("You can not both ask and guesss a card in the same turn.");
-                return;
-            }
-            if (asked_num == "" && guessed_num == "") {
-                update_error("You should either ask or guesss a card in the this turn.");
-                return;
-            }
-
-            if (asked_num != "") {
-                asked_number = parseInt(asked_num);
-                if (!(asked_number >= 1 && asked_number <= num_of_cards)) {
-                    update_error("The card number you ask should be in the range [1, " + num_of_cards + "]");
-                    return;
-                } else {
-                    // asked_number valid
-                    draw_answer_phase();
-                    game_stage = 2;
-                } 
+            game_stage = phase.ASK;
+        } else if (game_stage == phase.ASK) {
+            if (!is_a_valid_question()) return;
+            if ($("#asked_number").val()!= "") {
+                // asked_number valid
+                draw_answer_phase();
+                game_stage = phase.ANSWER;
             } else {
-                var guessed_number = parseInt(guessed_num);
-                if (!(guessed_number >= 1 && guessed_number <= num_of_cards)) {
-                    update_error("The card number you guess should be in the range [1, " + num_of_cards + "]");
-                    return;
+                // guessed_number valid
+                if (guessed_number == card_left) {
+                    // the player won
+                    draw_game_over_phase(true);
                 } else {
-                    // guessed_number valid
-                    if (guessed_number == card_left) {
-                        // the player won
-                        draw_game_over_phase(true);
-                    } else {
-                        draw_game_over_phase(false);
-                    }
-                    game_stage = 3;
+                    draw_game_over_phase(false);
                 }
+                game_stage = phase.GAME_OVER;
             }
         }
     }
@@ -185,10 +134,10 @@ $(function () {
         <br> \
         <div class='col-sm-12'> \
             <label>" + players[turn^1].name + ": </label> \
-            <input type='checkbox' class='answer' id='yes' value='true'> \
-            <label for='yes'>Yes</label> \
-            <input type='checkbox' class='answer' id='no' value='false'> \
-            <label for='no'>No</label> \
+            <form> \
+            <input type='radio' name='ans' id='yes' value='yes'>Yes \
+            <input type='radio' name='ans' id='no' value='no'>No \
+            </form> \
         </div>";
         $('#game-board').html(code);
     }
@@ -202,8 +151,71 @@ $(function () {
         $('#game-board').html(code);
     }
 
+    function is_valid_game_info(name1, name2, num_of_cards) {
+        if(name1 == "") {
+            update_error("Please enter the name of player 1.");
+            return false; 
+        }
+        if(name2 == "") {
+            update_error("Please enter the name of player 2.");
+            return false; 
+        }
+        if(num_of_cards % 2 == 0) {
+            update_error("The number of cards must be odd.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function is_a_valid_question() {
+        var asked_num = $("#asked_number").val();
+        var guessed_num = $("#guessed_number").val();
+
+        if(asked_num != "" && guessed_num != "") {
+            update_error("You can not both ask and guesss a card in the same turn.");
+            return;
+        }
+        if (asked_num == "" && guessed_num == "") {
+            update_error("You should either ask or guesss a card in the this turn.");
+            return;
+        }
+
+        if (asked_num != "") {
+            asked_number = parseInt(asked_num);
+            if (!(asked_number >= 1 && asked_number <= num_of_cards)) {
+                update_error("The card number you ask should be in the range [1, " + num_of_cards + "]");
+                return false;
+            } else {
+                return true;
+            } 
+        } else {
+            var guessed_number = parseInt(guessed_num);
+            if (!(guessed_number >= 1 && guessed_number <= num_of_cards)) {
+                update_error("The card number you guess should be in the range [1, " + num_of_cards + "]");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function is_a_valid_answer() {
+        var should_be_yes = players[turn^1].cards.includes(asked_number);
+        if (($('#yes').is(":checked") && !should_be_yes) 
+            || ($('#no').is(":checked") && should_be_yes)){
+            update_error("You should answer the question honestly.");
+            return false;
+        } else 
+            return true;
+    }
+
     function update_error(err) {
         $('#error-message').html(err);
         $('#error-container').show();
+    }
+
+    function earse_error() {
+        $('#error-message').parent().hide();
     }
 })
