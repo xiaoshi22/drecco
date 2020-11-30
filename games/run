@@ -1,2 +1,2 @@
-zip -r GuessWhatItIs.zip GuessWhatItIs
-python3 p3_add_game.py -gn GuessWhatItIs -gp GuessWhatItIs
+zip -r GuessTheCardOnTheTable.zip GuessTheCardOnTheTable
+python3 p3_add_game.py -gn GuessTheCardOnTheTable -gp GuessTheCardOnTheTable
