@@ -36,6 +36,11 @@ input.info-input.form-control {
 	border-radius: 10px;
 }
 
+input.game-input {
+	border-radius: 10px;
+	width: 50px;
+}
+
 button.start-game {
 	float: right;
 	margin: 5% 0;
