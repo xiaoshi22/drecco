@@ -118,7 +118,7 @@ function drawQRCodes() {
     image(qrcode1, width/4, 100);
 
 
-    var qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[0].cards.join(", "));
+    var qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[1].cards.join(", "));
     qrcode2.hide();
     image(qrcode2, width - (width/3), 100);
 }
