@@ -1,5 +1,5 @@
 $(function () {
-    function startGame() {
-        
-    }
+    $("#start-game-btn").click(function () {
+        console.log("here")
+    });
 })
