@@ -82,7 +82,9 @@ $(function () {
                 game_stage = phase.ANSWER;
             } else {
                 // guessed_number valid
-                if (guessed_number == card_left) {
+                console.log("guess num: " + guessed_number);
+                console.log("card left: " + guessed_number);
+                if (asked_number == card_left) {
                     // the player won
                     draw_game_over_phase(true);
                 } else {
