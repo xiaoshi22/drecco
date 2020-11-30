@@ -29,6 +29,16 @@ $(function () {
         var name2 = $("#player-2").val();
         num_of_cards = $("#number-of-cards").val();
 
+        if(name1 == "") {
+            update_error("Please enter the name of player 1.");
+            return; 
+        }
+
+        if(name2 == "") {
+            update_error("Please enter the name of player 2.");
+            return; 
+        }
+
         if(num_of_cards % 2 == 0) {
             update_error("The number of cards must be odd.");
             return;
@@ -70,6 +80,10 @@ $(function () {
     // });
 
     $('#next-btn').click(function () {
+        next_phase();
+    });
+
+    function next_phase() {
         console.log('next btn clicked ' + game_stage);
 
         if (game_stage == 0 || game_stage == 2) {
@@ -125,7 +139,7 @@ $(function () {
                 }
             }
         }
-    });
+    }
 
     function draw_QR_code_phase() {
         var path1 = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + players[0].cards.join(", ");
@@ -166,7 +180,7 @@ $(function () {
     function draw_answer_phase(){
         var code = 
         "<div class='col-sm-12'> \
-            <label>Player1: Do you have card 3?</label> \
+            <label>" + players[turn].name + ": Do you have card " + asked_number + "?</label> \
         </div> \
         <br> \
         <div class='col-sm-12'> \
