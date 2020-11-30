@@ -62,6 +62,9 @@ $(function () {
 
     function next_phase() {
         earse_error();
+        if (game_stage == phase.QR_CODE) {
+            draw_figures();
+        }
         console.log('next btn clicked ' + game_stage);
 
         if (game_stage == phase.QR_CODE || game_stage == phase.ANSWER) {
@@ -112,34 +115,47 @@ $(function () {
         $('#game-board').html(code);
     }
 
+    function draw_figures() {
+        var code = "<div class='col-sm-2'> \
+        <img src='assets/images/stick_figure1.png' class='figure-image' alt='' /> \
+        </div> \
+        <div class='dialog-container col-sm-3'> \
+            <img src='assets/images/dialog1.png' class='dialog-image' alt='' /> \
+            <div class='dialog-text' id='dialog-text0'></div> \
+        </div> \
+        <div class='col-sm-2'></div> \
+        <div class='dialog-container col-sm-3'> \
+            <img src='assets/images/dialog2.png' class='dialog-image' alt='' /> \
+            <div class='dialog-text' id='dialog-text1'></div> \
+        </div> \
+        <div class='col-sm-2'> \
+            <img src='assets/images/stick_figure2.png' class='figure-image' alt='' /> \
+        </div>";
+        $('#game-board').html(code);
+    }
+
     function draw_ask_phase() {
         var code = 
-        "<div class='col-sm-12'> \
-            <label>" + players[turn].name + ": Do you have card </label> \
+            "<label>" + players[turn].name + ": Do you have card </label> \
             <input type='text' class='game-input' id='asked_number'> \
-            <label> ?</label><br> \
-            <label>------------------ OR ------------------<br> \
+            <label> ?</label> OR <br> \
             " + players[turn].name + ": I guess the card left on the table is </label> \
             <input type='text' class='game-input' id='guessed_number'> \
-            <label> .</label> \
-        </div>";
-        $('#game-board').html(code); 
+            <label> .</label>";
+        $('#dialog-text'+turn).html(code); 
+        $('#dialog-text'+(turn^1)).empty();
     }
 
     function draw_answer_phase(){
-        var code = 
-        "<div class='col-sm-12'> \
-            <label>" + players[turn].name + ": Do you have card " + asked_number + "?</label> \
-        </div> \
-        <br> \
-        <div class='col-sm-12'> \
-            <label>" + players[turn^1].name + ": </label> \
+        var ask_code = "<label>" + players[turn].name + ": Do you have card " + asked_number + "?</label>";
+        var answer_code = 
+            "<label>" + players[turn^1].name + ": </label> \
             <form> \
             <input type='radio' name='ans' id='yes' value='yes'>Yes \
             <input type='radio' name='ans' id='no' value='no'>No \
-            </form> \
-        </div>";
-        $('#game-board').html(code);
+            </form> ";
+        $('#dialog-text'+turn).html(ask_code); 
+        $('#dialog-text'+(turn^1)).html(answer_code); 
     }
 
     function draw_game_over_phase(did_win) {
@@ -171,6 +187,9 @@ $(function () {
     function is_a_valid_question() {
         var asked_num = $("#asked_number").val();
         var guessed_num = $("#guessed_number").val();
+
+        console.log(asked_num);
+        console.log(guessed_num);
 
         if(asked_num != "" && guessed_num != "") {
             update_error("You can not both ask and guesss a card in the same turn.");

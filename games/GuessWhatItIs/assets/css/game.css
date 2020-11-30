@@ -28,8 +28,34 @@ body {
 	border-radius: 10px;
 }
 
+.game-board-display {
+	height: 500px;
+}
+
 .game-title {
 	text-align: center;
+}
+
+.figure-image {
+	margin-top: 200px;
+	max-width:100%; 
+	height:auto;
+}
+
+.dialog-image {
+	margin-top: 100px;
+	max-width:150%; 
+	height:auto;
+}
+
+.dialog-container {
+	position: relative;
+  	text-align: left;
+}
+.dialog-text {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
 }
 
 input.info-input.form-control {
