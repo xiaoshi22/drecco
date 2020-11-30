@@ -10,6 +10,7 @@ function setup() {
     button.parent('game-container');
     button.attribute('class', 'btn btn-success')
     button.mousePressed(nextTurn);
+    noLoop();
 }
 
 var canvas;
@@ -98,6 +99,7 @@ function startGame() {
     turn = 0;
 
     inGame = true;
+    redraw();
 }
 
 function drawPlayers() {
