@@ -11,6 +11,13 @@ body {
 	border-radius: 10px;
 }
 
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+  }
+
 .information-header {
 	margin-bottom: 10%;
 }
@@ -50,12 +57,12 @@ body {
 
 .dialog-container {
 	position: relative;
-  	text-align: left;
+  	text-align: center;
 }
 .dialog-text {
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
+	top: 43%;
+    left: 25%;
 }
 
 input.info-input.form-control {

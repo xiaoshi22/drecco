@@ -118,6 +118,7 @@ $(function () {
     function draw_figures() {
         var code = "<div class='col-sm-2'> \
         <img src='assets/images/stick_figure1.png' class='figure-image' alt='' /> \
+        <h3>" + players[0].name + "</h3> \
         </div> \
         <div class='dialog-container col-sm-3'> \
             <img src='assets/images/dialog1.png' class='dialog-image' alt='' /> \
@@ -130,16 +131,18 @@ $(function () {
         </div> \
         <div class='col-sm-2'> \
             <img src='assets/images/stick_figure2.png' class='figure-image' alt='' /> \
+            <h3>" + players[1].name + "</h3> \
         </div>";
         $('#game-board').html(code);
     }
 
     function draw_ask_phase() {
         var code = 
-            "<label>" + players[turn].name + ": Do you have card </label> \
+            "<label>Do you have card </label> \
             <input type='text' class='game-input' id='asked_number'> \
-            <label> ?</label> OR <br> \
-            " + players[turn].name + ": I guess the card left on the table is </label> \
+            <label> ?</label><br> \
+            --------- OR ---------<br> \
+            I guess the card left on the table is </label> \
             <input type='text' class='game-input' id='guessed_number'> \
             <label> .</label>";
         $('#dialog-text'+turn).html(code); 
@@ -147,10 +150,9 @@ $(function () {
     }
 
     function draw_answer_phase(){
-        var ask_code = "<label>" + players[turn].name + ": Do you have card " + asked_number + "?</label>";
+        var ask_code = "<label>Do you have card " + asked_number + "?</label>";
         var answer_code = 
-            "<label>" + players[turn^1].name + ": </label> \
-            <form> \
+            "<form> \
             <input type='radio' name='ans' id='yes' value='yes'>Yes \
             <input type='radio' name='ans' id='no' value='no'>No \
             </form> ";
