@@ -19,8 +19,6 @@ var turn = 0;
 var game;
 var numCards;
 var message = '';
-var player1 = '';
-var player2 = '';
 var qrcode1;
 var qrcode2;
 var numberTextSize = 24;
@@ -56,22 +54,45 @@ function draw() {
      */
 function startGame() {
     message = '';
-    player1 = document.getElementById("player-1").value;
-    player2 = document.getElementById("player-2").value;
-    numCards = document.getElementById("number-of-cards").value;
+    var name1 = document.getElementById("player-1").value;
+    var name2 = document.getElementById("player-2").value;
+    var numOfCards = document.getElementById("number-of-cards").value;
 
-
-    if(numCards % 2 == 0) {
-            document.getElementById('error-message').innerText = "The number of cards must be odd.";
-            document.getElementById('error-container').style.display = 'block';
-            inGame = false;
-            return;
+    if(numOfCards % 2 == 0) {
+        document.getElementById('error-message').innerText = "The number of cards must be odd.";
+        document.getElementById('error-container').style.display = 'block';
+        inGame = false;
+        return;
     }
 
+    var cards1 = new Array();
+    var cards2 = new Array();
+
+    var cardLeft = Math.floor(Math.random() * numOfCards) + 1;
+
+    for(var i =1; i<=numOfCards; i++){
+        if (i == cardLeft)
+            continue;
+        
+        if (cards1.length >= (numOfCards - 1)/2)
+            cards2.push(i);
+        else if (cards2.length >= (numOfCards - 1)/2)
+            cards1.push(i);
+        else if (Math.random()>=0.5)
+            cards1.push(i);
+        else 
+            cards2.push(i);
+    }
+    
+    var players = new Array(2);
+    players[0] = new Player(name1, cards1);
+    players[1] = new Player(name2, cards2);
+
+
     game = new Game({
-        player1: player1,
-        player2: player2,
-        numOfCards: numCards
+        numOfCards: numOfCards,
+        cardLeft: cardLeft,
+        players: players
     });
 
     qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
@@ -90,16 +111,14 @@ function drawPlayers() {
     textSize(30);
     fill(255,0,0);
     stroke(255,0,0);
-    text(player1, width/4, 60);
+    text(game.players[0].name, width/4, 60);
     // Player 2 Text
     fill(0,0,255);
     stroke(0,0,255);
-    text(player2, width -(width/3), 60);
+    text(game.players[1].name, width -(width/3), 60);
 }
 
 function drawQRCodes() {
-    qrcode1.hide();
-    qrcode2.hide();
     image(qrcode1, width/4, 100);
     image(qrcode2, width - (width/3), 100);
 }
@@ -148,9 +167,9 @@ function gameOver() {
 * - numOfCards: number of weights in the game.
  */
 class Player {
-    constructor(name, numOfCards) {
+    constructor(name, cards) {
         this.name = name;
-        this.numOfCards = numOfCards;
+        this.cards = cards;
     }
 }
 
@@ -165,15 +184,12 @@ class Game {
      */
     constructor(properties) {
         this.numOfCards = properties.numOfCards;
-        // FAKE DATA STOP 
+        this.cardLeft = properties.cardLeft;
+        this.players = players;
+        
         this.gameOver = false;
         this.gameState = 'Placing Weights';
         this.currentTurn = 0;
-
-        this.players = new Array(2);
-        this.players[0] = new Player(properties.player1, this.numOfCards);
-        this.players[1] = new Player(properties.player2, this.numOfCards);
-
 
         this.isGameOver();
     }
