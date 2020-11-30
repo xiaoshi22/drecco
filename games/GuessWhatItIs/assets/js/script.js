@@ -17,10 +17,7 @@ var inGame = false;
 var done = false;
 var turn = 0;
 var game;
-var numCards;
 var message = '';
-var qrcode1;
-var qrcode2;
 var numberTextSize = 24;
 
 function draw() {
@@ -95,10 +92,7 @@ function startGame() {
         players: players
     });
 
-    qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1');
-    qrcode1.hide();
-    qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=2');
-    qrcode2.hide();
+
 
     done = false;
     turn = 0;
@@ -119,7 +113,13 @@ function drawPlayers() {
 }
 
 function drawQRCodes() {
+    var qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[0].cards.join(", "));
+    qrcode1.hide();
     image(qrcode1, width/4, 100);
+
+
+    var qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[0].cards.join(", "));
+    qrcode2.hide();
     image(qrcode2, width - (width/3), 100);
 }
 
@@ -185,7 +185,7 @@ class Game {
     constructor(properties) {
         this.numOfCards = properties.numOfCards;
         this.cardLeft = properties.cardLeft;
-        this.players = players;
+        this.players = properties.players;
         
         this.gameOver = false;
         this.gameState = 'Placing Weights';
