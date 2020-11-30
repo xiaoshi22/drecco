@@ -14,7 +14,7 @@ function setup() {
 }
 
 var canvas;
-var inGame = false;
+var gameStage = 0;
 var done = false;
 var turn = 0;
 var game;
@@ -24,23 +24,31 @@ var numberTextSize = 24;
 function draw() {
     background(220);
     fill(255);
-    if(inGame) {
-        drawPlayers();
-        drawQRCodes();
-        // strokeWeight(0);
-        // drawMessage();
-        // drawPlayers();
-        // drawUnusedWeights();
-        // drawTorque();
-        // if(!tipping) {
-        //     strokeWeight(0);
-        //     drawTable();
-        //     drawTiles();
-        //     strokeWeight(1);
-        // } else{
-        //     tipBoard();
-        // }
+    if (gameStage > 0) {
+        if(gameStage == 1) {
+            drawPlayers();
+            drawQRCodes();
+            // strokeWeight(0);
+            // drawMessage();
+            // if(!tipping) {
+            //     strokeWeight(0);
+            //     drawTable();
+            //     drawTiles();
+            //     strokeWeight(1);
+            // } else{
+            //     tipBoard();
+            // }
+        } else if (gameStage == 2) {
+            drawPlayers();
+        }
+    
+        button = createButton('Finish');
+        button.position(width - 150, height - 50);
+        button.parent('game-container');
+        button.attribute('class', 'btn btn-success')
+        button.mousePressed(nextTurn);
     }
+
 }
 
     /*
@@ -59,7 +67,7 @@ function startGame() {
     if(numOfCards % 2 == 0) {
         document.getElementById('error-message').innerText = "The number of cards must be odd.";
         document.getElementById('error-container').style.display = 'block';
-        inGame = false;
+        gameStage = 0;
         return;
     }
 
@@ -98,7 +106,7 @@ function startGame() {
     done = false;
     turn = 0;
 
-    inGame = true;
+    gameStage = 1;
     redraw();
 }
 
@@ -115,13 +123,14 @@ function drawPlayers() {
 }
 
 function drawQRCodes() {
-    var qrcode1 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[0].cards.join(", "));
+    var path1 = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[0].cards.join(", ");
+    var qrcode1 = createImg(path1);
     qrcode1.hide();
-    image(qrcode1, width/4, 100);
-
-
-    var qrcode2 = createImg('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[1].cards.join(", "));
+    var path2 = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + game.players[1].cards.join(", ");
+    var qrcode2 = createImg(path2);
     qrcode2.hide();
+
+    image(qrcode1, width/4, 100);
     image(qrcode2, width - (width/3), 100);
 }
 
@@ -133,6 +142,9 @@ function nextTurn() {
         gameOver();
 	game.gameOver = false;
 	done = true;
+    } else if (gameStage == 1) {
+        gameStage = 2;
+        redraw();
     }
 }
 
