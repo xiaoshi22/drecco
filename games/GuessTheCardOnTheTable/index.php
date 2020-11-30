@@ -78,7 +78,7 @@
 	    *       if smaller score is better. Otherwise no need to pass variable
 	    *       
 	    */
-	    getScore("GuessWhatItIs", 0);
+	    getScore("GuessTheCardOnTheTable", 0);
 	?>
     </div>
         <h3> Play game in pop up window:</h3>
@@ -87,7 +87,7 @@
     <?php include $base."footer.php"; ?>
 </div>
 <script type="text/javascript">
-    newWindowBtn(800,800,"games/GuessWhatItIs/iframe.html", []);
+    newWindowBtn(800,800,"games/GuessTheCardOnTheTable/iframe.html", []);
 </script>
 </body>
 </html>

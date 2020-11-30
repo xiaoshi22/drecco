@@ -93,6 +93,11 @@ $(function () {
                 game_stage = phase.GAME_OVER;
             }
         }
+
+        if (game_stage == phase.GAME_OVER)
+            draw_game_info()
+        else
+            draw_cheatsheet()
     }
 
     function draw_QR_code_phase() {
@@ -171,7 +176,36 @@ $(function () {
         $('#game-board').html(code);
     }
 
-    function is_valid_game_info(name1, name2, num_of_cards) {
+    function draw_game_info(){
+        var code =
+        "<h2 class='information-header'> Game information </h2> \
+        <div class='info-form'> \
+            <label for='player-1'> Player 1 Name </label> \
+            <input type='text' class='form-control info-input' id='player-1'> \
+        </div> \
+         <div class='info-form'> \
+            <label for='player-2'> Player 2 Name </label> \
+            <input type='text' class='form-control info-input' id='player-2'> \
+        </div> \
+         <div class='info-form'> \
+            <label for='number-of-cards'> Number of Cards (must be odd) </label> \
+            <input type='text' class='form-control info-input' id='number-of-cards' value='5'> \
+        </div> \
+         <div class='col-sm-12 alert alert-danger alert-dismissable' id='error-container'> \
+            <a href='#' class='close' aria-label='close'>&times;</a> \
+            <p id='error-message'> </p> \
+        </div> \
+        <div class='btn-container col-sm-12'> \
+            <button type='button' class='start-game btn btn-primary' id='start-game-btn'>Start new game</button> \
+        </div>";
+        $('#side_bar').html(code);
+    }
+
+    function draw_cheatsheet(){
+        
+    }
+
+    function is_valid_game_info(name1, name2) {
         if(name1 == "") {
             update_error("Please enter the name of player 1.");
             return false; 
