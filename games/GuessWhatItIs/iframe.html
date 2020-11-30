@@ -4,9 +4,9 @@
     <head>
         <title>Guess What It Is</title>
         <script src="assets/js/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script> -->
         <script src="assets/js/script.js"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="assets/css/game.css"/>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="game col-sm-9" id='game-container'>
-
+                <div class="information-container col-sm-3"></div>
             </div>
         </div>
     </body>
@@ -53,8 +53,6 @@
     <script>
         $('.close').on('click', function() {
             $(this).parent().hide();
-            console.log('worked');
         });
-
     </script>
 </html>
