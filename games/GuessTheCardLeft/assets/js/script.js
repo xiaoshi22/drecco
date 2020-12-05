@@ -123,19 +123,14 @@ $(function () {
     }
 
     function draw_figures() {
-        var code = "<div class='col-sm-2'> \
-        <img src='assets/images/stick_figure1.png' class='figure-image' alt='' /> \
-        <h3>" + players[0].name + "</h3> \
+        var code = 
+        "<div class='col-sm-2'> \
+            <img src='assets/images/stick_figure1.png' class='figure-image' alt='' /> \
+            <h3>" + players[0].name + "</h3> \
         </div> \
-        <div class='dialog-container col-sm-3'> \
-            <img src='assets/images/dialog1.png' class='dialog-image' alt='' /> \
-            <div class='dialog-text' id='dialog-text0'></div> \
-        </div> \
+        <div class='dialog-container col-sm-3' id = 'dialog0'></div> \
         <div class='col-sm-2'></div> \
-        <div class='dialog-container col-sm-3'> \
-            <img src='assets/images/dialog2.png' class='dialog-image' alt='' /> \
-            <div class='dialog-text' id='dialog-text1'></div> \
-        </div> \
+        <div class='dialog-container col-sm-3'  id = 'dialog1'></div> \
         <div class='col-sm-2'> \
             <img src='assets/images/stick_figure2.png' class='figure-image' alt='' /> \
             <h3>" + players[1].name + "</h3> \
@@ -144,7 +139,7 @@ $(function () {
     }
 
     function draw_ask_phase() {
-        var code = 
+        var ask_code = 
             "<label>Do you have card </label> \
             <input type='text' class='game-input' id='asked_number'> \
             <label> ?</label><br> \
@@ -152,8 +147,8 @@ $(function () {
             I guess the card left on the table is </label> \
             <input type='text' class='game-input' id='guessed_number'> \
             <label> .</label>";
-        $('#dialog-text'+turn).html(code); 
-        $('#dialog-text'+(turn^1)).empty();
+        draw_dialog(turn, ask_code);
+        $('#dialog'+(turn^1)).empty();
     }
 
     function draw_answer_phase(){
@@ -163,8 +158,15 @@ $(function () {
             <input type='radio' name='ans' id='yes' value='yes'>Yes \
             <input type='radio' name='ans' id='no' value='no'>No \
             </form> ";
-        $('#dialog-text'+turn).html(ask_code); 
-        $('#dialog-text'+(turn^1)).html(answer_code); 
+        draw_dialog(turn, ask_code); 
+        draw_dialog(turn^1, answer_code); 
+    }
+
+    function draw_dialog(index, content) {
+        var code = 
+        "<img src='assets/images/dialog" + index +".png' class='dialog-image' alt='' /> \
+        <div class='dialog-text'>" + content + "</div>";
+        $("#dialog"+index).html(code); 
     }
 
     function draw_game_over_phase(did_win) {
