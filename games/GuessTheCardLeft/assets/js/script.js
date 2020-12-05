@@ -28,7 +28,7 @@ $(function () {
         }
     }
     $('#start-game-btn').click(function () {
-        earse_error();
+        erase_error();
         console.log('start game btn clicked');
         turn = 0;
         game_stage = phase.QR_CODE;
@@ -61,7 +61,7 @@ $(function () {
     });
 
     function next_phase() {
-        earse_error();
+        erase_error();
         if (game_stage == phase.QR_CODE) {
             draw_figures();
         }
@@ -274,7 +274,7 @@ $(function () {
         $('#error-container').show();
     }
 
-    function earse_error() {
+    function erase_error() {
         $('#error-message').parent().hide();
     }
 })
