@@ -87,7 +87,8 @@
     <?php include $base."footer.php"; ?>
 </div>
 <script type="text/javascript">
-    newWindowBtn(800,600,"games/GuessTheCardLeft/game.html", []);
+    // newWindowBtn(800,600,"games/GuessTheCardLeft/game.html", []);
+    newWindowBtn(1000,650,"games/GuessTheCardLeft/game.html", []);
 </script>
 </body>
 </html>
