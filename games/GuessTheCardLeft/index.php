@@ -88,14 +88,6 @@
 </div>
 <script type="text/javascript">
     newWindowBtn(800,600,"games/GuessTheCardLeft/game.html", []);
-    // var win = window.open('games/GuessTheCardLeft/game.html', '_blank');
-    // if (win) {
-    //     //Browser has allowed it to be opened
-    //     win.focus();
-    // } else {
-    //     //Browser has blocked it
-    //     alert('Please allow popups for this website');
-    // }
 </script>
 </body>
 </html>
