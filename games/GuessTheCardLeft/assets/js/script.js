@@ -140,7 +140,8 @@ $(function () {
         </div>";
         $('#game-board').html(code);
         $('#names-row').html(
-            "<h4>" + players[0].name + "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"+ players[1].name + "</h4> "
+           "<div class='col-sm-6' ><h4>" + players[0].name + "</h4></div> \
+           <div class='col-sm-6' style='text-align: right'><h4>" + players[1].name + "</h4></div>"
         );
     }
 
