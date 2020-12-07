@@ -85,7 +85,7 @@ including
 
 #### draw_cheatsheet
 
-display the ask and answer history on sidebar
+display the ask and answer history on side bar
 
 ### Validation
 
@@ -116,27 +116,7 @@ show error message on side bar
 
 #### erase_error
 
-erase error message on side bar       
-                   
-                       function is_a_valid_answer() {
-                           var should_be_yes = players[turn^1].cards.includes(asked_number);
-                           if (($('#yes').is(":checked") && !should_be_yes) 
-                               || ($('#no').is(":checked") && should_be_yes)){
-                               update_error("You should answer the question honestly.");
-                               return false;
-                           } else 
-                               return true;
-                       }
-                   
-                       function update_error(err) {
-                           $('#error-message').html(err);
-                           $('#error-container').show();
-                       }
-                   
-                       function erase_error() {
-                           $('#error-message').parent().hide();
-                       }
-                   })
+erase error message on side bar
 
 ## Useful Tools from Node.js
 
