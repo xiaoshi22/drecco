@@ -38,6 +38,7 @@ body {
 
 .game-board-display {
 	min-height: 400px;
+	text-align: center;
 }
 
 .game-title {
@@ -45,9 +46,9 @@ body {
 }
 
 .figure-image {
-	margin-top: 150px;
     max-width: 100px;
     height: auto;
+	padding-top: 150px;
 }
 
 .dialog-image {
@@ -61,9 +62,15 @@ body {
   	text-align: center;
 }
 .dialog-text {
-	position: absolute;
-    top: 60px;
-    left: 10px;
+	margin-top: -300px;
+    margin-left: 40px;
+    width: 150px;
+}
+
+.card-image {
+	margin-top: 200px;
+    max-width: 70px;
+    height: auto;
 }
 
 input.info-input.form-control {

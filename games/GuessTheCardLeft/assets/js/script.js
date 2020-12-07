@@ -122,28 +122,28 @@ $(function () {
             src='" + path2 + "'> \
         </div>";
         $('#game-board').html(code);
+        $('#names-row').empty();
 
         draw_cheatsheet();
     }
 
     function draw_figures() {
         var code = 
-        "<div class='col-sm-1'> \
-            <div id='figure0'> \
-            <img src='assets/images/stick_figure0.png' style='float: right;'  class='figure-image' alt='' /> \
-            </div> \
-            <h4>" + players[0].name + "</h4> \
+        "<div class='col-sm-5'> \
+            <div id='figure0'></div> \
+            <div id = 'dialog0'></div> \
         </div> \
-        <div class='dialog-container col-sm-4' style='padding-right: 0;padding-left: 0;' id = 'dialog0'></div> \
-        <div class='col-sm-2'></div> \
-        <div class='dialog-container col-sm-4' style='padding-right: 0;padding-left: 0;'  id = 'dialog1'></div> \
-        <div class='col-sm-1'> \
-            <div id='figure1'> \
-            <img src='assets/images/stick_figure1.png' class='figure-image' alt='' /> \
-            </div> \
-            <h4>" + players[1].name + "</h4> \
+        <div class='col-sm-2' id='card'> \
+        <img src='assets/images/red_back.png' class='card-image' alt='' /> \
+        </div> \
+        <div class='col-sm-5'> \
+            <div id='figure1'></div> \
+            <div id ='dialog1'></div> \
         </div>";
         $('#game-board').html(code);
+        $('#names-row').html(
+            "<h4>" + players[0].name + "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"+ players[1].name + "</h4> "
+        );
     }
 
     function draw_ask_phase() {
@@ -155,9 +155,7 @@ $(function () {
             <input type='text' class='game-input' id='guessed_number'> \
             <label> .</label>";
         draw_dialog(turn, ask_code);
-
-        $("#figure"+(turn^1)).html("<img src='assets/images/stick_figure" + (turn^1) +".png' style='float: right;'  class='figure-image' alt='' /> ");
-        $('#dialog'+(turn^1)).empty();
+        draw_figure(turn^1);
     }
 
     function draw_answer_phase(){
@@ -171,27 +169,30 @@ $(function () {
         draw_dialog(turn^1, answer_code); 
     }
 
+    function draw_figure(index) {
+        $('#dialog'+index).empty();
+        var style = index == 1 ? "style='float: right;'" : "";
+        $("#figure"+index).html("<img src='assets/images/stick_figure" + index +".png'" + style + "class='figure-image' alt='' /> ");
+    }
+
     function draw_dialog(index, content) {
         var style = index == 1 ? "style='float: right;'" : "";
         var code = "<img src='assets/images/figure_dialog" + index +".png'" + style +" class='dialog-image' alt='' />";
         $("#figure"+index).html(code);
         code = "<div class='dialog-text'>" + content + "</div>";
         $("#dialog"+index).html(code); 
-        // return;
-
-        // var code = 
-        // "<img src='assets/images/dialog" + index +".png'" + style +" class='dialog-image' alt='' /> \
-        // <div class='dialog-text'>" + content + "</div>";
-        // $("#dialog"+index).html(code); 
     }
 
     function draw_game_over_phase(did_win) {
-        var code = "<h3>You " + (did_win ? "Won" : "Lost") 
-                 + "! The card left is " + card_left 
+        var code = "<h3>The card left is " + card_left 
                  + ".<br> Congratulations, " 
                  + (did_win ? players[turn].name : players[turn^1].name) 
-                 + " :)</h3>";
+                 + " :)</h3> \
+                 <img src='assets/images/" + card_left +"C.png' style='margin-top: 40px;max-width: 150px;height: auto;' alt='' />";
+        
         $('#game-board').html(code);
+        $('#names-row').empty();
+
     }
 
     function draw_game_info(){
