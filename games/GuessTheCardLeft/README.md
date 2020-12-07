@@ -128,6 +128,20 @@ Possible error messages:
 
 - The number of cards should be in the range [3, 13].
 
+3. invalid ask and guess input
+
+- You can not both ask and guesss a card in the same turn.
+
+- You should either ask or guesss a card in the this turn.
+
+- The card number you ask should be in the range [1, num_of_cards]
+
+- The card number you guess should be in the range [1, num_of_cards]
+
+4. dishonest answer 
+
+- You should answer the question honestly.
+
 #### erase_error
 
 erase error message on side bar
