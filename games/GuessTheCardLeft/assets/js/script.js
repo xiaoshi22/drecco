@@ -241,6 +241,11 @@ $(function () {
             return false;
         }
 
+        if(num_of_cards <= 1 || num_of_cards > 13) {
+            update_error("The number of cards should be in the range [3, 13].");
+            return false;
+        }
+
         return true;
     }
 
