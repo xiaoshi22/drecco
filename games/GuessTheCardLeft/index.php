@@ -3,6 +3,7 @@
 <head>
     <?php $base = "../../" ?>
     <base href="../../">
+    <title>Guess the Card Left</title>
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/facebox.js"></script>
     <script src="js/gameSettings.js"></script>
@@ -25,7 +26,7 @@
         <?php include $base."leftMenuGame.php"; ?>
     </nav>
     <article>
-        <h1 id="gameName">Guess What It Is</h1>
+        <h1 id="gameName">Guess the Card Left</h1>
         <h3 id="groupName">Team Winner</h3>
         <h3>Instruction:</h3>
         <div id="gameDesc" class="jumbotron">
@@ -37,7 +38,7 @@
                 card {1, 2, 3, ... or 2n + 1}?" The other palyer must answer the 
                 question honestly. Players ask such questions alternatively. If 
                 one player is confident to guess, in his/her turn, the player 
-                could say "I guess the card left on the table is ...". The player 
+                could say "I guess the card left is ...". The player 
                 loses if guess wrong, win if guess correct. 
                 
                 Both players play the first in one round. If someone wins both rounds, 
@@ -52,19 +53,19 @@
                 5 is left on the table <br>
                 <br> 
                 1st turn: <br>
-                A: "do you have 1?" <br>
-                B: "no"<br>
+                A: "Do you have card 1?" <br>
+                B: "No."<br>
                 <br>
                 2nd turn:<br>
-                B: "do you have 2?"<br>
-                A: "yes"<br>
+                B: "Do you have card 2?"<br>
+                A: "Yes."<br>
                 <br>
                 3rd turn:<br>
-                A: "do you have 4?"<br>
-                B: "yes"<br>
+                A: "Do you have card 4?"<br>
+                B: "Yes."<br>
                 <br>
                 4st turn:<br>
-                B: "5 is on the table!"<br>
+                B: "I guess the card left is 5."<br>
                 <br>
                 Because B has 3 and 4, so B know 1, 2 and 3 could be left. And After A asks 1 after the first turn, A did not claim 1 is on the table on the third turn. B knows 1 is on A asked a card he has. So, he knows A has 1 and 2. Thus, B is confident to say 5 is left :)
         </div>
