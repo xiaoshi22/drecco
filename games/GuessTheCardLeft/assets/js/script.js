@@ -151,7 +151,7 @@ $(function () {
             "<label>Do you have card </label> \
             <input type='text' class='game-input' id='asked_number'> \
             <label> ?</label><br> \
-            OR I guess the card left is </label> \
+            OR, I guess the card left is </label> \
             <input type='text' class='game-input' id='guessed_number'> \
             <label> .</label>";
         draw_dialog(turn, ask_code);
@@ -172,11 +172,13 @@ $(function () {
     function draw_figure(index) {
         $('#dialog'+index).empty();
         var style = index == 1 ? "style='float: right;'" : "";
-        $("#figure"+index).html("<img src='assets/images/stick_figure" + index +".png'" + style + "class='figure-image' alt='' /> ");
+        style = "";
+        $("#figure"+index).html("<img src='assets/images/stick_figure" + index +".png'" + style + "class='dialog-image' alt='' /> ");
     }
 
     function draw_dialog(index, content) {
         var style = index == 1 ? "style='float: right;'" : "";
+        style = "";
         var code = "<img src='assets/images/figure_dialog" + index +".png'" + style +" class='dialog-image' alt='' />";
         $("#figure"+index).html(code);
         code = "<div class='dialog-text'>" + content + "</div>";
