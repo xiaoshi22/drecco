@@ -31,26 +31,27 @@
         <h3>Instruction:</h3>
         <div id="gameDesc" class="jumbotron">
             <strong>Overview:</strong> <br/>
-            <p>Initially, we have cards labeled from 1 to 2n + 1. Player A and B both take 
-                n cards, and one card left on the table. (They do not know each other's 
-                cards, and the goal is guessing the card left on the table.) 
-                In every turn, one player asks the other palyer: "Do you have 
-                card {1, 2, 3, ... or 2n + 1}?" The other palyer must answer the 
+            <p>Initially, we have cards labeled from 1 to 2n + 1. (2n + 1 is in the range of [3, 13].)
+                Player A and B both take 
+                n cards, and one card is left on the table. (They do not know each other's 
+                cards, and the goal is to guess the card left on the table.) 
+                In every turn, one player asks the other player: "Do you have 
+                card {1, 2, 3, ... or 2n + 1}?" The other player must answer the 
                 question honestly. Players ask such questions alternatively. If 
-                one player is confident to guess, in his/her turn, the player 
-                could say "I guess the card left is ...". The player 
-                loses if guess wrong, win if guess correct. 
+                one player is confident to guess, in his/her turn the player 
+                could say "I guess the card left on the table is {1, 2, 3, ... or 2n + 1}". The player 
+                loses the game if his/her guess is wrong; otherwise, he/she wins. 
                 
-                Both players play the first in one round. If someone wins both rounds, 
-                he/she wins. If each wins once, the one guesses correctly in less turns 
+                Each player takes the lead in one of the two rounds. If someone wins both rounds, 
+                he/she wins. If each wins once, the one guesses correctly in fewer turns 
                 wins.
             </p>
             <strong>Example:</strong> <br/>
-                The interesting part is that palyer A could ask player B if B has a card that A has. <br>
-                For example, we have cards 1, 2, 3, 4, 5 <br>
-                A: 1, 2 <br>
-                B: 3, 4 <br>
-                5 is left on the table <br>
+                The interesting part: player A could mislead player B by asking player B if B has a card that A has. <br>
+                For example, we have cards 1, 2, 3, 4, 5. <br>
+                A has card 1 and 2.<br>
+                B has card 3 and 4. <br>
+                Thus, 5 is left on the table. <br>
                 <br> 
                 1st turn: <br>
                 A: "Do you have card 1?" <br>
@@ -67,7 +68,11 @@
                 4st turn:<br>
                 B: "I guess the card left is 5."<br>
                 <br>
-                Because B has 3 and 4, so B know 1, 2 and 3 could be left. And After A asks 1 after the first turn, A did not claim 1 is on the table on the third turn. B knows 1 is on A asked a card he has. So, he knows A has 1 and 2. Thus, B is confident to say 5 is left :)
+                Because B had 3 and 4, so B knew 1, 2 and 3 might be 
+                left on the table. And After A asked the card 1 after the first turn and got a negative response, 
+                A did not claim 1 was left on the table in the third turn. 
+                Thus, B knew A asked a card he had. 
+                So, he knew A has 1 and 2. Therefore, B is confident to say 5 is left in the fourth turn :)
         </div>
         <h3>Leaderboard:</h3>
 	<div id="scoreArea", class="jumbotron">
