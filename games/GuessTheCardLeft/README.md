@@ -114,6 +114,20 @@ in answer phase, do validation on the radio box checked
 
 show error message on side bar
 
+Possible error messages:
+
+1. empty name for player
+
+- Please enter the name of player 1.
+ 
+- Please enter the name of player 2.
+
+2. invalid number of card input
+
+- The number of cards must be odd.
+
+- The number of cards should be in the range [3, 13].
+
 #### erase_error
 
 erase error message on side bar
