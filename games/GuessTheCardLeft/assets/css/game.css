@@ -9,6 +9,7 @@ body {
 .information {
 	background: rgba(0,0,0, .1);
 	border-radius: 10px;
+	height: 500px;
 }
 
 .center {
@@ -30,13 +31,13 @@ body {
 }
 
 .game {
-	height: 600px;
+	height: 500px;
 	background: rgba(0,0,0, .1);
 	border-radius: 10px;
 }
 
 .game-board-display {
-	height: 500px;
+	min-height: 400px;
 }
 
 .game-title {
@@ -44,15 +45,15 @@ body {
 }
 
 .figure-image {
-	margin-top: 200px;
-	max-width:100%; 
-	height:auto;
+	margin-top: 150px;
+    max-width: 100px;
+    height: auto;
 }
 
 .dialog-image {
-	margin-top: 100px;
-	max-width:150%; 
-	height:auto;
+	max-width: 220px;
+    height: auto;
+    padding-top: 50px;
 }
 
 .dialog-container {
@@ -61,8 +62,8 @@ body {
 }
 .dialog-text {
 	position: absolute;
-	top: 43%;
-    left: 25%;
+    top: 60px;
+    left: 10px;
 }
 
 input.info-input.form-control {
@@ -90,4 +91,5 @@ button.next {
 
 .btn-container {
 	overflow: auto;
+	position: relative;
 }

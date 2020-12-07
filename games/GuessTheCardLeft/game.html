@@ -12,36 +12,39 @@
         <div class="container-fluid"> 
             <h1 class="page-header game-title"> Guess the Card Left Game </h1> 
 
-            <div class="information-container col-sm-3">
+            <div class="information-container col-sm-4">
                 <div class="col-sm-1"></div>
-                <div class="information col-sm-10" id="side_bar">
+                <div class="information col-sm-10">
+                    <div style='height: 400px'>
                     <h2 class="information-header"> Game information </h2>
-                    <div class="info-form">
-                        <label for="player-1"> Player 1 Name </label>
-                        <input type="text" class="form-control info-input" id="player-1">
+                    <div class="side-bar-display" id="side_bar">
+                        <div class="info-form">
+                            <label for="player-1"> Player 1 Name </label>
+                            <input type="text" class="form-control info-input" id="player-1">
+                        </div>
+                        <br>
+                        <div class="info-form">
+                            <label for="player-2"> Player 2 Name </label>
+                            <input type="text" class="form-control info-input" id="player-2">
+                        </div>
+                        <br>
+                        <div class="info-form">
+                            <label for="number-of-cards"> Number of Cards</label>
+                            <input type="text" class="form-control info-input" id="number-of-cards" value="5">
+                        </div>
                     </div>
-
-                     <div class="info-form">
-                        <label for="player-2"> Player 2 Name </label>
-                        <input type="text" class="form-control info-input" id="player-2">
-                    </div>
-
-                     <div class="info-form">
-                        <label for="number-of-cards"> Number of Cards (must be odd) </label>
-                        <input type="text" class="form-control info-input" id="number-of-cards" value="5">
-                    </div>
-
                      <div class="col-sm-12 alert alert-danger alert-dismissable" id="error-container">
                         <a href="#" class="close" aria-label="close">&times;</a>
                         <p id="error-message"> </p>
+                    </div>
                     </div>
                     <div class="btn-container col-sm-12">
                         <button type="button" class="start-game btn btn-primary" id="start-game-btn">Start new game</button>
                     </div>
                 </div>
             </div>
-            <div class="game-container col-sm-9" id='game-container'>
-                <div class="game col-sm-10">
+            <div class="game-container col-sm-8" id='game-container'>
+                <div class="game col-sm-11">
                     <div class="game-board-display col-sm-12" id="game-board">
                     </div>
                     <div class="btn-container col-sm-12" id='game-btn'>
