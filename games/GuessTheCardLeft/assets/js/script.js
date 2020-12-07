@@ -25,7 +25,6 @@ $(function () {
     }
     $('#start-game-btn').click(function () {
         erase_error();
-        console.log('start game btn clicked');
         if (is_cheatsheet) {
             draw_game_info();
             return;
@@ -66,7 +65,6 @@ $(function () {
         if (game_stage == phase.QR_CODE) {
             draw_figures();
         }
-        console.log('next btn clicked ' + game_stage);
 
         if (game_stage == phase.QR_CODE || game_stage == phase.ANSWER) {
             if (game_stage == phase.QR_CODE) {
@@ -253,8 +251,6 @@ $(function () {
         var asked_num = $("#asked_number").val();
         var guessed_num = $("#guessed_number").val();
 
-        console.log(asked_num);
-        console.log(guessed_num);
 
         if(asked_num != "" && guessed_num != "") {
             update_error("You can not both ask and guesss a card in the same turn.");
