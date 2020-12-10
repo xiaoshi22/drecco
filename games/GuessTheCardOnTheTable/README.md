@@ -1,5 +1,5 @@
-# Guess the Card Left
-This is an implementation for the game `Guess the Card Left`.
+# Guess the Card on the Table
+This is an implementation for the game `Guess the Card on the Table`.
 
 ## Front-end
 

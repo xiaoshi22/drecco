@@ -81,12 +81,12 @@ $(function () {
             if (!is_a_valid_question()) return;
             if (($("#asked_from_number").val()!= "") && ($("#asked_to_number").val()!= "")) {
                 // asked_number valid
-                update_cheatsheet(players[turn].name +": " + "Do you have card from " + asked_from_number +" to " + asked_to_number +"?");
+                update_cheatsheet(players[turn].name +": " + "Do you have all cards from " + asked_from_number +" to " + asked_to_number +"?");
                 draw_answer_phase();
                 game_stage = phase.ANSWER;
             } else {
                 // guessed_number valid
-                update_cheatsheet(players[turn].name +": " + "I guess the card left is " + guessed_number + "?");
+                update_cheatsheet(players[turn].name +": " + "I guess the card on table is " + guessed_number + "?");
                 if (guessed_number == card_left) {
                     // the player won
                     draw_game_over_phase(true);
@@ -148,20 +148,20 @@ $(function () {
 
     function draw_ask_phase() {
         var ask_code = 
-            "<label>Do you have card from </label> \
+            "<div>Do you have all cards from \
             <input type='text' class='game-input' id='asked_from_number'> \
-            \ <label> to </label> \
+            to \
             \<input type='text' class='game-input' id='asked_to_number'> \
-            <label> ?</label><br> \
-            OR, I guess the card left is </label> \
+             ?<br> \
+            OR, I guess the card on the table is  \
             <input type='text' class='game-input' id='guessed_number'> \
-            <label> .</label>";
+             .";
         draw_dialog(turn, ask_code);
         draw_figure(turn^1);
     }
 
     function draw_answer_phase(){
-        var ask_code = "<label>Do you have card from " + asked_from_number +" to "+ asked_to_number + "?</label>";
+        var ask_code = "<label>Do you have all cards from " + asked_from_number +" to "+ asked_to_number + "?</label>";
         var answer_code = 
             "<form> \
             <input type='radio' name='ans' id='yes' value='yes'>Yes \
@@ -188,7 +188,7 @@ $(function () {
     }
 
     function draw_game_over_phase(did_win) {
-        var code = "<h3>The card left is " + card_left 
+        var code = "<h3>The card on the table is " + card_left 
                  + ".<br> Congratulations, " 
                  + (did_win ? players[turn].name : players[turn^1].name) 
                  + " :)</h3> \
@@ -269,10 +269,13 @@ $(function () {
         if (asked_from_num != ""&&asked_to_num!="") {
             asked_from_number = parseInt(asked_from_num);
             asked_to_number = parseInt(asked_to_num);
-            if (!(asked_from_num >= 1 && asked_to_num <= num_of_cards)) {
+            if (!(asked_from_number >= 1 && 
+                asked_from_number <= num_of_cards && 
+                asked_to_number >= 1 && 
+                asked_to_number <= num_of_cards)) {
                 update_error("The card number you ask should be in the range [1, " + num_of_cards + "]");
                 return false;
-            } else if(asked_from_num>asked_to_num){
+            } else if(asked_from_number>asked_to_number){
                 update_error("The to number should be no less than from number");
                 return false;
             } else{

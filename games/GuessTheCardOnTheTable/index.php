@@ -37,7 +37,7 @@
             table. (They do not know each other's cards, and the goal is to guess the
             card on the table.) In each turn, one player asks the other player:
             "Do you have all cards from x to y?" where y >= x. The other player must
-            answer the question honestly. The system will check.
+            answer the question honestly. The system will check.<br>
 
             Players alternate in asking questions. A player may guess after
             receiving the answer saying something to the effect
