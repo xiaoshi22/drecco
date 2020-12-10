@@ -13,7 +13,8 @@ $(function () {
     var players = new Array(2);
     var num_of_cards;
     var card_left;
-    var asked_number;
+    var asked_from_number;
+    var asked_to_number;
     var guessed_number;
     var is_cheatsheet = false;
 
@@ -78,9 +79,9 @@ $(function () {
             game_stage = phase.ASK;
         } else if (game_stage == phase.ASK) {
             if (!is_a_valid_question()) return;
-            if ($("#asked_number").val()!= "") {
+            if (($("#asked_from_number").val()!= "") && ($("#asked_to_number").val()!= "")) {
                 // asked_number valid
-                update_cheatsheet(players[turn].name +": " + "Do you have card " + asked_number + "?");
+                update_cheatsheet(players[turn].name +": " + "Do you have card from " + asked_from_number +" to " + asked_to_number +"?");
                 draw_answer_phase();
                 game_stage = phase.ANSWER;
             } else {
@@ -147,8 +148,10 @@ $(function () {
 
     function draw_ask_phase() {
         var ask_code = 
-            "<label>Do you have card </label> \
-            <input type='text' class='game-input' id='asked_number'> \
+            "<label>Do you have card from </label> \
+            <input type='text' class='game-input' id='asked_from_number'> \
+            \ <label> to </label> \
+            \<input type='text' class='game-input' id='asked_to_number'> \
             <label> ?</label><br> \
             OR, I guess the card left is </label> \
             <input type='text' class='game-input' id='guessed_number'> \
@@ -158,7 +161,7 @@ $(function () {
     }
 
     function draw_answer_phase(){
-        var ask_code = "<label>Do you have card " + asked_number + "?</label>";
+        var ask_code = "<label>Do you have card from " + asked_from_number +" to "+ asked_to_number + "?</label>";
         var answer_code = 
             "<form> \
             <input type='radio' name='ans' id='yes' value='yes'>Yes \
@@ -249,25 +252,30 @@ $(function () {
     }
 
     function is_a_valid_question() {
-        var asked_num = $("#asked_number").val();
+        var asked_from_num = $("#asked_from_number").val();
+        var asked_to_num = $("#asked_to_number").val();
         var guessed_num = $("#guessed_number").val();
 
 
-        if(asked_num != "" && guessed_num != "") {
+        if((asked_from_num != ""||asked_to_num!="") && guessed_num != "") {
             update_error("You can not both ask and guesss a card in the same turn.");
             return;
         }
-        if (asked_num == "" && guessed_num == "") {
+        if ((asked_from_num == "" || asked_to_num=="") && guessed_num == "") {
             update_error("You should either ask or guesss a card in the this turn.");
             return;
         }
 
-        if (asked_num != "") {
-            asked_number = parseInt(asked_num);
-            if (!(asked_number >= 1 && asked_number <= num_of_cards)) {
+        if (asked_from_num != ""&&asked_to_num!="") {
+            asked_from_number = parseInt(asked_from_num);
+            asked_to_number = parseInt(asked_to_num);
+            if (!(asked_from_num >= 1 && asked_to_num <= num_of_cards)) {
                 update_error("The card number you ask should be in the range [1, " + num_of_cards + "]");
                 return false;
-            } else {
+            } else if(asked_from_num>asked_to_num){
+                update_error("The to number should be no less than from number");
+                return false;
+            } else{
                 return true;
             } 
         } else {
@@ -282,7 +290,10 @@ $(function () {
     }
 
     function is_a_valid_answer() {
-        var should_be_yes = players[turn^1].cards.includes(asked_number);
+        var should_be_yes = true;
+        for(var i =asked_from_number;i<=asked_to_number;i++)
+            if(!players[turn^1].cards.includes(i))
+                should_be_yes = false;
         if (($('#yes').is(":checked") && !should_be_yes) 
             || ($('#no').is(":checked") && should_be_yes)){
             update_error("You should answer the question honestly.");
